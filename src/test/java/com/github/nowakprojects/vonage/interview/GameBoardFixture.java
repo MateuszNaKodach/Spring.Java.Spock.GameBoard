@@ -2,12 +2,10 @@ package com.github.nowakprojects.vonage.interview;
 
 class GameBoardFixture {
 
-    static GameBoard anyGameBoard() {
-        return GameBoard.withSize(GameBoardSize.defaultSize());
+    static GameBoard aStartingGameBoard() {
+        return GameBoard.with(GameBoardSize.defaultSize(), PiecePosition.facing(PieceDirection.NORTH).on(Coordinates.of(0, 0)));
     }
 
-    static GameBoard startingGameBoard() {
-        return GameBoard.withSize(GameBoardSize.defaultSize());
+    private GameBoardFixture() {
     }
-
 }

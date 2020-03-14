@@ -3,21 +3,35 @@ package com.github.nowakprojects.vonage.interview
 import spock.lang.Specification
 import spock.lang.Unroll
 
+import static com.github.nowakprojects.vonage.interview.PieceDirection.*
+import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.onBottomEdgeFacing
+import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.onLeftEdgeFacing
+import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.onRightEdgeFacing
+import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.onTopEdgeFacing
 import static com.github.nowakprojects.vonage.interview.RevolutionaryGameFixture.aGameWithPieceOnPosition
 import static com.github.nowakprojects.vonage.interview.RevolutionaryGameFixture.aNewGame
 import static com.github.nowakprojects.vonage.interview.GameCommandFixture.M
 import static com.github.nowakprojects.vonage.interview.GameCommandFixture.L
 import static com.github.nowakprojects.vonage.interview.GameCommandFixture.R
-import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.turnedEast
-import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.turnedNorth
-import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.turnedSouth
-import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.turnedWest
+import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.facingEast
+import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.facingNorth
+import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.facingWest
+import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.STARTING_POINT
+import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.TOP_RIGHT_CORNER
 
 
 class RevolutionaryGameSpec extends Specification {
 
+    def 'the piece will start in the bottom left corner of the board facing North'() {
+        given:
+        final game = aNewGame()
+
+        expect:
+        game.piecePosition() == facingNorth.on(STARTING_POINT)
+    }
+
     @Unroll
-    def 'piece position after moves #input should be #output'(input, output) {
+    def 'piece position after moves #input should be #output'(List<GameCommand> input, PiecePosition output) {
         given:
         final game = aNewGame()
 
@@ -28,22 +42,21 @@ class RevolutionaryGameSpec extends Specification {
         piecePosition == output
 
         where:
-        input                             || output
-        [M, R, M, L, M, R, M]             || turnedEast.withCoordinates(Coordinates.of(2, 2))
-        [R, M, M, M, L, M, M]             || turnedNorth.withCoordinates(Coordinates.of(3, 2))
-        [L, M]                            || turnedWest.withCoordinates(Coordinates.of(0, 0))
-        [L, L, M]                         || turnedSouth.withCoordinates(Coordinates.of(0, 0))
-        [L, L, L, M]                      || turnedSouth.withCoordinates(Coordinates.of(1, 0))
-        [L, L, L, L]                      || turnedSouth.withCoordinates(Coordinates.of(0, 0))
-        [R, R, M]                         || turnedSouth.withCoordinates(Coordinates.of(0, 0))
-        [R, M, M, M, M, M]                || turnedEast.withCoordinates(Coordinates.of(4, 0))
-        [R, M, M, M, M, L, M, M, M, M, M] || turnedNorth.withCoordinates(Coordinates.of(4, 4))
-        [M, M, M, M, M]                   || turnedNorth.withCoordinates(Coordinates.of(0, 4))
+        input                          || output
+        []                             || facingNorth.on(STARTING_POINT)
+        [L]                            || facingWest.on(STARTING_POINT)
+        [R]                            || facingEast.on(STARTING_POINT)
+        [M]                            || facingNorth.on(Coordinates.of(0, 1))
+        [L, L, L, M]                   || facingEast.on(Coordinates.of(1, 0))
+        [L, L, L, L]                   || facingNorth.on(STARTING_POINT)
+        [M, R, M, L, M, R, M]          || facingEast.on(Coordinates.of(2, 2))
+        [R, M, M, M, L, M, M]          || facingNorth.on(Coordinates.of(3, 2))
+        [R, M, M, M, M, L, M, M, M, M] || facingNorth.on(TOP_RIGHT_CORNER)
     }
 
 
     @Unroll
-    def 'when piece is on #position and try to move forward (off the board), the move should have no effect'(position) {
+    def 'when piece is on edge position #position and try to move forward (off the board), the move should have no effect'(PiecePosition position) {
         given:
         final game = aGameWithPieceOnPosition(position)
 
@@ -53,18 +66,8 @@ class RevolutionaryGameSpec extends Specification {
         then:
         piecePosition == position
 
-        //TODO: Generate pipe with all permutations on the edge
         where:
-        position                                          | _
-        turnedWest.withCoordinates(Coordinates.of(0, 0))  | _
-        turnedSouth.withCoordinates(Coordinates.of(0, 0)) | _
-        turnedEast.withCoordinates(Coordinates.of(4, 0))  | _
-        turnedSouth.withCoordinates(Coordinates.of(4, 0)) | _
-        turnedNorth.withCoordinates(Coordinates.of(0, 4)) | _
-        turnedWest.withCoordinates(Coordinates.of(0, 4))  | _
-        turnedNorth.withCoordinates(Coordinates.of(4, 4)) | _
-        turnedEast.withCoordinates(Coordinates.of(4, 4))  | _
-        turnedEast.withCoordinates(Coordinates.of(4, 3))  | _
+        position << onLeftEdgeFacing(WEST) + onRightEdgeFacing(EAST) + onBottomEdgeFacing(SOUTH) + onTopEdgeFacing(NORTH)
     }
 
 }

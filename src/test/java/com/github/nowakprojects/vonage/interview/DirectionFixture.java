@@ -5,4 +5,7 @@ class DirectionFixture {
     public static final PieceDirection E = PieceDirection.EAST;
     public static final PieceDirection S = PieceDirection.SOUTH;
     public static final PieceDirection W = PieceDirection.WEST;
+
+    private DirectionFixture() {
+    }
 }

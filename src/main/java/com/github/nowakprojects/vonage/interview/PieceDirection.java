@@ -3,7 +3,7 @@ package com.github.nowakprojects.vonage.interview;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-enum PieceDirection {
+public enum PieceDirection {
     NORTH(0),
     EAST(90),
     SOUTH(180),
@@ -15,11 +15,11 @@ enum PieceDirection {
 
     private final int degrees;
 
-    final PieceDirection right90degrees() {
+    public final PieceDirection right90degrees() {
         return findByDegrees(degrees + 90).orElse(PieceDirection.NORTH);
     }
 
-    final PieceDirection left90degrees() {
+    public final PieceDirection left90degrees() {
         return findByDegrees(degrees - 90).orElse(PieceDirection.WEST);
     }
 

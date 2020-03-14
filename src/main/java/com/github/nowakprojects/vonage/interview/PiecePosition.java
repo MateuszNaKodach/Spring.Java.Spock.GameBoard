@@ -2,33 +2,33 @@ package com.github.nowakprojects.vonage.interview;
 
 import java.util.Objects;
 
-class PiecePosition {
+public final class PiecePosition {
 
     private final Coordinates coordinates;
     private final PieceDirection direction;
 
-    PiecePosition(Coordinates coordinates, PieceDirection direction) {
+    public static PiecePosition facing(PieceDirection direction) {
+        return new PiecePosition(Coordinates.of(0, 0), direction);
+    }
+
+    private PiecePosition(Coordinates coordinates, PieceDirection direction) {
         this.coordinates = coordinates;
         this.direction = direction;
     }
 
-    static PiecePosition turned(PieceDirection direction) {
-        return new PiecePosition(Coordinates.of(0, 0), direction);
-    }
-
-    PiecePosition withCoordinates(Coordinates coordinates) {
+    public PiecePosition on(Coordinates coordinates) {
         return new PiecePosition(coordinates, this.direction);
     }
 
-    PiecePosition withDirection(PieceDirection direction) {
+    public PiecePosition with(PieceDirection direction) {
         return new PiecePosition(this.coordinates, direction);
     }
 
-    Coordinates coordinates() {
+    public Coordinates coordinates() {
         return coordinates;
     }
 
-    PieceDirection direction() {
+    public PieceDirection direction() {
         return direction;
     }
 

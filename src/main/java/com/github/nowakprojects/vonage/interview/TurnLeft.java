@@ -1,11 +1,11 @@
 package com.github.nowakprojects.vonage.interview;
 
-final class TurnLeft implements GameCommand {
+public final class TurnLeft implements GameCommand {
     @Override
     public GameBoard apply(GameBoard gameBoard) {
         final PiecePosition oldPosition = gameBoard.piecePosition();
-        final PiecePosition newPosition = oldPosition.withDirection(oldPosition.direction().left90degrees());
-        return gameBoard.withPiecePosition(newPosition);
+        final PiecePosition newPosition = oldPosition.with(oldPosition.direction().left90degrees());
+        return gameBoard.with(newPosition);
     }
 
     @Override

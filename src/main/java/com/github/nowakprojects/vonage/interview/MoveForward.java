@@ -3,12 +3,12 @@ package com.github.nowakprojects.vonage.interview;
 import static java.lang.String.format;
 
 final class MoveForward implements GameCommand {
+
     @Override
     public GameBoard apply(GameBoard gameBoard) {
         final PiecePosition oldPosition = gameBoard.piecePosition();
-        final PieceDirection oldDirection = oldPosition.direction();
         final Coordinates newCoordinates = calculateCoordinates(oldPosition);
-        return gameBoard.withPiecePosition(new PiecePosition(newCoordinates, oldDirection));
+        return gameBoard.with(oldPosition.on(newCoordinates));
     }
 
     private Coordinates calculateCoordinates(PiecePosition oldPosition) {

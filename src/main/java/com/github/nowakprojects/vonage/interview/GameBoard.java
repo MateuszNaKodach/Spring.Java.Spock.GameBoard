@@ -1,18 +1,12 @@
 package com.github.nowakprojects.vonage.interview;
 
-//TODO: Remove size or check size boundary while moving in tests
-final class GameBoard {
+public final class GameBoard {
 
     private final GameBoardSize size;
     private final PiecePosition piecePosition;
 
-    static GameBoard withSize(GameBoardSize size) {
-        return new GameBoard(size);
-    }
-
-    private GameBoard(GameBoardSize size) {
-        this.size = size;
-        this.piecePosition = new PiecePosition(Coordinates.of(0, 0), PieceDirection.NORTH);
+    static GameBoard with(GameBoardSize size, PiecePosition piecePosition) {
+        return new GameBoard(size, piecePosition);
     }
 
     private GameBoard(GameBoardSize size, PiecePosition piecePosition) {
@@ -24,14 +18,21 @@ final class GameBoard {
         return size;
     }
 
-    PiecePosition piecePosition() {
+    public PiecePosition piecePosition() {
         return piecePosition;
     }
 
-    GameBoard withPiecePosition(PiecePosition piecePosition) {
+    public GameBoard with(PiecePosition piecePosition) {
         final Coordinates newPieceCoordinates = piecePosition.coordinates();
-        return newPieceCoordinates.x() >= size.toInt() || newPieceCoordinates.y() >= size.toInt() || newPieceCoordinates.x() < 0 || newPieceCoordinates.y() < 0
+        return isOffTheBoard(newPieceCoordinates)
                 ? this
                 : new GameBoard(this.size, piecePosition);
+    }
+
+    private boolean isOffTheBoard(Coordinates coordinates) {
+        return coordinates.x() >= size.toInt()
+                || coordinates.y() >= size.toInt()
+                || coordinates.x() < 0
+                || coordinates.y() < 0;
     }
 }

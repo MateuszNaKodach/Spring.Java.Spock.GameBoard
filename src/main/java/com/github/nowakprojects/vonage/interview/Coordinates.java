@@ -11,32 +11,32 @@ final class Coordinates {
         return new Coordinates(x, y);
     }
 
-    public Coordinates(int x, int y) {
+    private Coordinates(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public int x() {
+    int x() {
         return x;
     }
 
-    public int y() {
+    int y() {
         return y;
     }
 
-    public Coordinates increaseXBy(int addend) {
+    Coordinates increaseXBy(int addend) {
         return of(x + addend, y);
     }
 
-    public Coordinates decreaseXBy(int subtrahend) {
+    Coordinates decreaseXBy(int subtrahend) {
         return of(x - subtrahend, y);
     }
 
-    public Coordinates increaseYBy(int addend) {
+    Coordinates increaseYBy(int addend) {
         return of(x, y + addend);
     }
 
-    public Coordinates decreaseYBy(int subtrahend) {
+    Coordinates decreaseYBy(int subtrahend) {
         return of(x, y - subtrahend);
     }
 

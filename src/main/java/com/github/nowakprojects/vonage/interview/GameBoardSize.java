@@ -11,21 +11,21 @@ final class GameBoardSize {
     private final int raw;
 
     static GameBoardSize defaultSize() {
-        return of(DEFAULT_SIZE);
+        return squareWithSideLength(DEFAULT_SIZE);
     }
 
-    static GameBoardSize of(int size) {
-        if (size <= 0) {
-            throw new IllegalArgumentException(format("Game board size (%s) has to be grater than 0", size));
+    private static GameBoardSize squareWithSideLength(int sideLength) {
+        if (sideLength <= 0) {
+            throw new IllegalArgumentException(format("Game board side length (%s) is invalid. The length has to be greater than 0", sideLength));
         }
-        return new GameBoardSize(size);
+        return new GameBoardSize(sideLength);
     }
 
     private GameBoardSize(int raw) {
         this.raw = raw;
     }
 
-    public int toInt() {
+    int toInt() {
         return raw;
     }
 
