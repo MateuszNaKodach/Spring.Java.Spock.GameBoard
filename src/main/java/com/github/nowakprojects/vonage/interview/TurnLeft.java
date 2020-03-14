@@ -4,7 +4,7 @@ public final class TurnLeft implements GameCommand {
     @Override
     public GameBoard apply(GameBoard gameBoard) {
         final PiecePosition oldPosition = gameBoard.piecePosition();
-        final PiecePosition newPosition = oldPosition.with(oldPosition.direction().left90degrees());
+        final PiecePosition newPosition = oldPosition.turned(oldPosition.direction().left90degrees());
         return gameBoard.with(newPosition);
     }
 

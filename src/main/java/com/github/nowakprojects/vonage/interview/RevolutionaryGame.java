@@ -30,7 +30,7 @@ public final class RevolutionaryGame {
     }
 
     public final PiecePosition execute(Stream<GameCommand> commands) {
-        return execute(commands.collect(Collectors.toUnmodifiableList()));
+        return execute(commands.collect(Collectors.toList()));
     }
 
     public final PiecePosition execute(List<GameCommand> commands) {

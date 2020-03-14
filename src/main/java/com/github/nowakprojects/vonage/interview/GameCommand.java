@@ -9,6 +9,6 @@ public interface GameCommand {
 
     default GameCommand andThen(GameCommand after) {
         Objects.requireNonNull(after);
-        return (t) -> after.apply(this.apply(t));
+        return (before) -> after.apply(this.apply(before));
     }
 }

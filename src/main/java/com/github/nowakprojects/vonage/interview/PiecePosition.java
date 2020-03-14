@@ -7,8 +7,8 @@ public final class PiecePosition {
     private final Coordinates coordinates;
     private final PieceDirection direction;
 
-    public static PiecePosition facing(PieceDirection direction) {
-        return new PiecePosition(Coordinates.of(0, 0), direction);
+    public static PiecePosition.Builder facing(PieceDirection direction) {
+        return new PiecePosition.Builder(direction);
     }
 
     private PiecePosition(Coordinates coordinates, PieceDirection direction) {
@@ -20,7 +20,7 @@ public final class PiecePosition {
         return new PiecePosition(coordinates, this.direction);
     }
 
-    public PiecePosition with(PieceDirection direction) {
+    public PiecePosition turned(PieceDirection direction) {
         return new PiecePosition(this.coordinates, direction);
     }
 
@@ -49,5 +49,17 @@ public final class PiecePosition {
     @Override
     public String toString() {
         return coordinates + " " + direction.name().charAt(0);
+    }
+
+    public static class Builder {
+        private final PieceDirection direction;
+
+        private Builder(PieceDirection direction) {
+            this.direction = direction;
+        }
+
+        public PiecePosition on(Coordinates coordinates) {
+            return new PiecePosition(coordinates, this.direction);
+        }
     }
 }

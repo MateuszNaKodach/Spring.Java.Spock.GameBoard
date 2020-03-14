@@ -4,6 +4,7 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 import static com.github.nowakprojects.vonage.interview.PieceDirection.*
+import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.facingSouth
 import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.onBottomEdgeFacing
 import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.onLeftEdgeFacing
 import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.onRightEdgeFacing
@@ -42,16 +43,17 @@ class RevolutionaryGameSpec extends Specification {
         piecePosition == output
 
         where:
-        input                          || output
-        []                             || facingNorth.on(STARTING_POINT)
-        [L]                            || facingWest.on(STARTING_POINT)
-        [R]                            || facingEast.on(STARTING_POINT)
-        [M]                            || facingNorth.on(Coordinates.of(0, 1))
-        [L, L, L, M]                   || facingEast.on(Coordinates.of(1, 0))
-        [L, L, L, L]                   || facingNorth.on(STARTING_POINT)
-        [M, R, M, L, M, R, M]          || facingEast.on(Coordinates.of(2, 2))
-        [R, M, M, M, L, M, M]          || facingNorth.on(Coordinates.of(3, 2))
-        [R, M, M, M, M, L, M, M, M, M] || facingNorth.on(TOP_RIGHT_CORNER)
+        input                                || output
+        []                                   || facingNorth.on(STARTING_POINT)
+        [L]                                  || facingWest.on(STARTING_POINT)
+        [R]                                  || facingEast.on(STARTING_POINT)
+        [M]                                  || facingNorth.on(Coordinates.of(0, 1))
+        [L, L, L, M]                         || facingEast.on(Coordinates.of(1, 0))
+        [L, L, L, L]                         || facingNorth.on(STARTING_POINT)
+        [M, R, M, L, M, R, M]                || facingEast.on(Coordinates.of(2, 2))
+        [R, M, M, M, L, M, M]                || facingNorth.on(Coordinates.of(3, 2))
+        [R, M, M, M, M, L, M, M, M, M]       || facingNorth.on(TOP_RIGHT_CORNER)
+        [M, M, M, M, M, L, L, M, M, M, M, M] || facingSouth.on(STARTING_POINT)
     }
 
 
