@@ -16,27 +16,27 @@ final class Coordinates {
         this.y = y;
     }
 
-    int x() {
+    public int x() {
         return x;
     }
 
-    int y() {
+    public int y() {
         return y;
     }
 
-    Coordinates increaseXBy(int addend) {
+    public Coordinates increaseXBy(int addend) {
         return of(x + addend, y);
     }
 
-    Coordinates decreaseXBy(int subtrahend) {
+    public Coordinates decreaseXBy(int subtrahend) {
         return of(x - subtrahend, y);
     }
 
-    Coordinates increaseYBy(int addend) {
+    public Coordinates increaseYBy(int addend) {
         return of(x, y + addend);
     }
 
-    Coordinates decreaseYBy(int subtrahend) {
+    public Coordinates decreaseYBy(int subtrahend) {
         return of(x, y - subtrahend);
     }
 
