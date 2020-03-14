@@ -2,12 +2,12 @@ package com.github.nowakprojects.vonage.interview;
 
 import java.util.Objects;
 
-public final class PiecePosition {
+final class PiecePosition {
 
     private final Coordinates coordinates;
     private final PieceDirection direction;
 
-    public static PiecePosition.Builder facing(PieceDirection direction) {
+    static PiecePosition.Builder facing(PieceDirection direction) {
         return new PiecePosition.Builder(direction);
     }
 
@@ -16,19 +16,19 @@ public final class PiecePosition {
         this.direction = direction;
     }
 
-    public PiecePosition on(Coordinates coordinates) {
+    PiecePosition on(Coordinates coordinates) {
         return new PiecePosition(coordinates, this.direction);
     }
 
-    public PiecePosition turned(PieceDirection direction) {
+    PiecePosition turned(PieceDirection direction) {
         return new PiecePosition(this.coordinates, direction);
     }
 
-    public Coordinates coordinates() {
+    Coordinates coordinates() {
         return coordinates;
     }
 
-    public PieceDirection direction() {
+    PieceDirection direction() {
         return direction;
     }
 
@@ -51,14 +51,14 @@ public final class PiecePosition {
         return coordinates + " " + direction.name().charAt(0);
     }
 
-    public static class Builder {
+    static class Builder {
         private final PieceDirection direction;
 
         private Builder(PieceDirection direction) {
             this.direction = direction;
         }
 
-        public PiecePosition on(Coordinates coordinates) {
+        PiecePosition on(Coordinates coordinates) {
             return new PiecePosition(coordinates, this.direction);
         }
     }

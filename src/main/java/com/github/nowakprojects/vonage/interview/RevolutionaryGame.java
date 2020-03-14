@@ -8,7 +8,7 @@ import static java.util.Objects.nonNull;
 
 public final class RevolutionaryGame {
 
-    public static final PiecePosition STARTING_PIECE_POSITION = PiecePosition.facing(PieceDirection.NORTH).on(Coordinates.of(0, 0));
+    private static final PiecePosition STARTING_PIECE_POSITION = PiecePosition.facing(PieceDirection.NORTH).on(Coordinates.of(0, 0));
 
     private GameBoard gameBoard;
 

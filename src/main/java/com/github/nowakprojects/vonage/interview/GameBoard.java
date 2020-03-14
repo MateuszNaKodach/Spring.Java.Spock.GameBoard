@@ -1,6 +1,6 @@
 package com.github.nowakprojects.vonage.interview;
 
-public final class GameBoard {
+final class GameBoard {
 
     private final GameBoardSize size;
     private final PiecePosition piecePosition;
@@ -18,11 +18,11 @@ public final class GameBoard {
         return size;
     }
 
-    public PiecePosition piecePosition() {
+    PiecePosition piecePosition() {
         return piecePosition;
     }
 
-    public GameBoard with(PiecePosition piecePosition) {
+    GameBoard with(PiecePosition piecePosition) {
         final Coordinates newPieceCoordinates = piecePosition.coordinates();
         return isOffTheBoard(newPieceCoordinates)
                 ? this
