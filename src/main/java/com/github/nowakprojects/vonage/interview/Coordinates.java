@@ -2,7 +2,7 @@ package com.github.nowakprojects.vonage.interview;
 
 import java.util.Objects;
 
-final class Coordinates {
+public final class Coordinates {
 
     private final int x;
     private final int y;

@@ -2,7 +2,7 @@ package com.github.nowakprojects.vonage.interview;
 
 import static java.lang.String.format;
 
-final class MoveForward implements GameCommand {
+public final class MoveForward implements GameCommand {
 
     @Override
     public GameBoard apply(GameBoard gameBoard) {
