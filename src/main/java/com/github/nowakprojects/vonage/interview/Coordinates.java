@@ -2,7 +2,7 @@ package com.github.nowakprojects.vonage.interview;
 
 import java.util.Objects;
 
-final class Coordinates {
+public final class Coordinates {
 
     private final int x;
     private final int y;
@@ -16,11 +16,11 @@ final class Coordinates {
         this.y = y;
     }
 
-    int x() {
+    public int x() {
         return x;
     }
 
-    int y() {
+    public int y() {
         return y;
     }
 

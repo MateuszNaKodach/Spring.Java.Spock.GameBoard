@@ -2,7 +2,7 @@ package com.github.nowakprojects.vonage.interview;
 
 import java.util.Objects;
 
-final class PiecePosition {
+public final class PiecePosition {
 
     private final Coordinates coordinates;
     private final PieceDirection direction;
@@ -24,11 +24,11 @@ final class PiecePosition {
         return new PiecePosition(this.coordinates, direction);
     }
 
-    Coordinates coordinates() {
+    public Coordinates coordinates() {
         return coordinates;
     }
 
-    PieceDirection direction() {
+    public PieceDirection direction() {
         return direction;
     }
 
