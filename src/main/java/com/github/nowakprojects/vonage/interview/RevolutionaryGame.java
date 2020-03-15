@@ -44,7 +44,7 @@ public final class RevolutionaryGame {
     }
 
     final PiecePosition piecePosition() {
-        return this.gameBoard.piecePosition();
+        return gameBoard.piecePosition();
     }
 
 }
