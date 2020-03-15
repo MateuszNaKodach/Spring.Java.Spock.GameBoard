@@ -7,11 +7,11 @@ public final class MoveForward implements GameCommand {
     @Override
     public GameBoard apply(GameBoard gameBoard) {
         final PiecePosition oldPosition = gameBoard.piecePosition();
-        final Coordinates newCoordinates = calculateCoordinates(oldPosition);
+        final Coordinates newCoordinates = calculateForwardCoordinates(oldPosition);
         return gameBoard.with(oldPosition.on(newCoordinates));
     }
 
-    private Coordinates calculateCoordinates(PiecePosition oldPosition) {
+    private Coordinates calculateForwardCoordinates(PiecePosition oldPosition) {
         final Coordinates oldCoordinates = oldPosition.coordinates();
         final PieceDirection oldDirection = oldPosition.direction();
         switch (oldDirection) {

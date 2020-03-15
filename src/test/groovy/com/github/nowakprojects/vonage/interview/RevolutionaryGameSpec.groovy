@@ -4,6 +4,7 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 import static com.github.nowakprojects.vonage.interview.PieceDirection.*
+import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.BOTTOM_LEFT_CORNER
 import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.facingSouth
 import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.onBottomEdgeFacing
 import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.onLeftEdgeFacing
@@ -28,7 +29,7 @@ class RevolutionaryGameSpec extends Specification {
         final game = aNewGame()
 
         expect:
-        game.piecePosition() == facingNorth.on(STARTING_POINT)
+        game.piecePosition() == facingNorth.on(BOTTOM_LEFT_CORNER)
     }
 
     @Unroll
@@ -66,7 +67,7 @@ class RevolutionaryGameSpec extends Specification {
         final piecePosition = game.execute(M)
 
         then:
-        piecePosition == position
+        position == piecePosition
 
         where:
         position << onLeftEdgeFacing(WEST) + onRightEdgeFacing(EAST) + onBottomEdgeFacing(SOUTH) + onTopEdgeFacing(NORTH)
