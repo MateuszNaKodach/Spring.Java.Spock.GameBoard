@@ -24,19 +24,19 @@ public final class Coordinates {
         return y;
     }
 
-    Coordinates increaseXBy(int addend) {
+    Coordinates xIncreasedBy(int addend) {
         return of(x + addend, y);
     }
 
-    Coordinates decreaseXBy(int subtrahend) {
+    Coordinates xDecreasedBy(int subtrahend) {
         return of(x - subtrahend, y);
     }
 
-    Coordinates increaseYBy(int addend) {
+    Coordinates yIncreasedBy(int addend) {
         return of(x, y + addend);
     }
 
-    Coordinates decreaseYBy(int subtrahend) {
+    Coordinates yDecreasedBy(int subtrahend) {
         return of(x, y - subtrahend);
     }
 

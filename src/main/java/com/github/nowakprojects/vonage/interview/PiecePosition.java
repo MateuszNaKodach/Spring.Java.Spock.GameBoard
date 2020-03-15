@@ -48,7 +48,7 @@ public final class PiecePosition {
 
     @Override
     public String toString() {
-        return coordinates + " " + direction.name().charAt(0);
+        return coordinates + " " + direction;
     }
 
     static class Builder {

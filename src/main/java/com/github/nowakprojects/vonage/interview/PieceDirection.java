@@ -28,4 +28,9 @@ public enum PieceDirection {
                 .filter(direction -> direction.degrees == degrees)
                 .findFirst();
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(name().charAt(0));
+    }
 }

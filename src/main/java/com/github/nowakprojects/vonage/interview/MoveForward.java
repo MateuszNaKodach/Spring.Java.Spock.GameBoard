@@ -16,13 +16,13 @@ public final class MoveForward implements GameCommand {
         final PieceDirection oldDirection = oldPosition.direction();
         switch (oldDirection) {
             case NORTH:
-                return oldCoordinates.increaseYBy(1);
+                return oldCoordinates.yIncreasedBy(1);
             case EAST:
-                return oldCoordinates.increaseXBy(1);
+                return oldCoordinates.xIncreasedBy(1);
             case SOUTH:
-                return oldCoordinates.decreaseYBy(1);
+                return oldCoordinates.yDecreasedBy(1);
             case WEST:
-                return oldCoordinates.decreaseXBy(1);
+                return oldCoordinates.xDecreasedBy(1);
             default:
                 throw new IllegalArgumentException(format("Invalid direction (%s)", oldDirection));
         }
