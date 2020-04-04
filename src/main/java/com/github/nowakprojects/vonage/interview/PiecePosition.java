@@ -6,22 +6,32 @@ public final class PiecePosition {
 
     private final Coordinates coordinates;
     private final PieceDirection direction;
+    private final int collectedBerries;
 
     static PiecePosition.Builder facing(PieceDirection direction) {
         return new PiecePosition.Builder(direction);
     }
 
-    private PiecePosition(Coordinates coordinates, PieceDirection direction) {
+    private PiecePosition(Coordinates coordinates, PieceDirection direction, int collectedBerries) {
         this.coordinates = coordinates;
         this.direction = direction;
+        this.collectedBerries = collectedBerries;
     }
 
     PiecePosition on(Coordinates coordinates) {
-        return new PiecePosition(coordinates, this.direction);
+        return new PiecePosition(coordinates, this.direction, this.collectedBerries);
     }
 
     PiecePosition turned(PieceDirection direction) {
-        return new PiecePosition(this.coordinates, direction);
+        return new PiecePosition(this.coordinates, direction, this.collectedBerries);
+    }
+
+    PiecePosition collectBerry() {
+        return new PiecePosition(this.coordinates, direction, this.collectedBerries + 1);
+    }
+
+    int collectedBerries(){
+        return collectedBerries;
     }
 
     public Coordinates coordinates() {
@@ -59,7 +69,7 @@ public final class PiecePosition {
         }
 
         PiecePosition on(Coordinates coordinates) {
-            return new PiecePosition(coordinates, this.direction);
+            return new PiecePosition(coordinates, this.direction, 0);
         }
     }
 }

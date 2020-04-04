@@ -11,6 +11,7 @@ import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.onL
 import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.onRightEdgeFacing
 import static com.github.nowakprojects.vonage.interview.PiecePositionFixture.onTopEdgeFacing
 import static com.github.nowakprojects.vonage.interview.RevolutionaryGameFixture.aGameWithPieceOnPosition
+import static com.github.nowakprojects.vonage.interview.RevolutionaryGameFixture.aGameWithPieceOnPositionAndBerries
 import static com.github.nowakprojects.vonage.interview.RevolutionaryGameFixture.aNewGame
 import static com.github.nowakprojects.vonage.interview.GameCommandFixture.M
 import static com.github.nowakprojects.vonage.interview.GameCommandFixture.L
@@ -72,5 +73,24 @@ class RevolutionaryGameSpec extends Specification {
         where:
         position << onLeftEdgeFacing(WEST) + onRightEdgeFacing(EAST) + onBottomEdgeFacing(SOUTH) + onTopEdgeFacing(NORTH)
     }
+
+    @Unroll
+    def 'when piece collect berry, position should contains amount of collected berries'() {
+        given:
+        final game = aGameWithPieceOnPositionAndBerries(facingNorth.on(STARTING_POINT), berries)
+
+        when:
+        final piecePosition = game.execute(input)
+
+        then:
+        piecePosition.collectedBerries() == collectedBerries
+
+        where:
+        input | berries                      || collectedBerries
+        []    | Set.of(Coordinates.of(0, 1)) || 0
+        [M]   | Set.of(Coordinates.of(0, 1)) || 1
+
+    }
+
 
 }

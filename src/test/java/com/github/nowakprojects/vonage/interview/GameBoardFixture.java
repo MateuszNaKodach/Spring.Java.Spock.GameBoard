@@ -6,6 +6,10 @@ class GameBoardFixture {
         return GameBoard.with(GameBoardSize.defaultSize(), PiecePosition.facing(PieceDirection.NORTH).on(Coordinates.of(0, 0)));
     }
 
+    static GameBoard aStartingGameBoardWithBerries(BoardBerriesConfig boardBerriesConfig) {
+        return null;
+    }
+
     private GameBoardFixture() {
     }
 }
