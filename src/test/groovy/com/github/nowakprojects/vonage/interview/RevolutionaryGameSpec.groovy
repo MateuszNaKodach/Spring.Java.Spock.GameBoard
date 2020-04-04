@@ -74,7 +74,6 @@ class RevolutionaryGameSpec extends Specification {
         position << onLeftEdgeFacing(WEST) + onRightEdgeFacing(EAST) + onBottomEdgeFacing(SOUTH) + onTopEdgeFacing(NORTH)
     }
 
-    @Unroll
     def 'when piece collect berry, position should contains amount of collected berries'() {
         given:
         final game = aGameWithPieceOnPositionAndBerries(facingNorth.on(STARTING_POINT), berries)
@@ -86,9 +85,12 @@ class RevolutionaryGameSpec extends Specification {
         piecePosition.collectedBerries() == collectedBerries
 
         where:
-        input | berries                      || collectedBerries
-        []    | Set.of(Coordinates.of(0, 1)) || 0
-        [M]   | Set.of(Coordinates.of(0, 1)) || 1
+        input     | berries                                            || collectedBerries
+        []        | Set.of(Coordinates.of(0, 1))                       || 0
+        [M]       | Set.of(Coordinates.of(0, 1))                       || 1
+        [M, M]    | Set.of(Coordinates.of(0, 1), Coordinates.of(0, 3)) || 1
+        [M, M, M] | Set.of(Coordinates.of(0, 1), Coordinates.of(0, 3)) || 2
+
 
     }
 
