@@ -14,4 +14,8 @@ class GameBoardSpec extends Specification {
         gameBoard.size().toInt() == 5
     }
 
+    def 'game board has placed set of berries'(){
+
+    }
+
 }
