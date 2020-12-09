@@ -7,8 +7,8 @@ public interface GameCommand {
 
     GameBoard apply(GameBoard board);
 
-    default GameCommand andThen(GameCommand after) {
-        Objects.requireNonNull(after);
-        return (before) -> after.apply(this.apply(before));
+    default GameCommand andThen(GameCommand nextCommand) {
+        Objects.requireNonNull(nextCommand);
+        return (gameBoard) -> nextCommand.apply(this.apply(gameBoard));
     }
 }

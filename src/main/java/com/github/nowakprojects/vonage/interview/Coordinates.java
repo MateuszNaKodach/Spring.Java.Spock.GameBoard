@@ -16,11 +16,11 @@ public final class Coordinates {
         this.y = y;
     }
 
-    public int x() {
+    int x() {
         return x;
     }
 
-    public int y() {
+    int y() {
         return y;
     }
 
