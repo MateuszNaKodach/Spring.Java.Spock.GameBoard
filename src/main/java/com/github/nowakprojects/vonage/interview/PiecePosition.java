@@ -24,11 +24,11 @@ public final class PiecePosition {
         return new PiecePosition(this.coordinates, direction);
     }
 
-    public Coordinates coordinates() {
+    Coordinates coordinates() {
         return coordinates;
     }
 
-    public PieceDirection direction() {
+    PieceDirection direction() {
         return direction;
     }
 
